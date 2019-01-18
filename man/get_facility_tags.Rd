@@ -15,5 +15,5 @@ A tibble of data under the facilities tag for each station.
 \description{
 \code{get_facility_tags} takes a list of stations returned from the API as a
 list and returns a tibble of data under the facilities and passenger service
-tag, with one row per station.
+tag, with one row per station. Each tibble column is a character string.
 }

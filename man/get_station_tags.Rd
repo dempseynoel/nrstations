@@ -15,5 +15,5 @@ A tibble of data under the station tag for each station.
 \description{
 \code{get_station_tags} takes a list of stations returned from the API as a
 list and returns a tibble of data under the station tag, with one row per
-station.
+station. Each tibble column is a character string.
 }

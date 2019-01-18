@@ -15,5 +15,5 @@ A tibble of data under the interchange tag for each station.
 \description{
 \code{get_interchange_tags} takes a list of stations returned from the API
 as a list and returns a tibble of data under the interchange tag, with one
-row per station.
+row per station. Each tibble column is a character string.
 }
