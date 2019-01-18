@@ -18,7 +18,7 @@ The function ```fetch_stations_xml``` fetches and parses all data from the Stati
 
 ## Example
 The following provides an example of how to fetch and parse the Stations XML feed into an R list, and then create a tibble with the details on the facilities available at each station. When calling ```fetch_stations_list``` pass your NRDP username and password as to the relevant arguments in quotation marks. 
-```
+```r
 stations <- nrstations::fetch_stations_list("nrdp_user@example.com", "nrdp_password_example")
 stations_tibble <- nrstations::get_facility_tags(stations)
 ```
