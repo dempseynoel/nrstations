@@ -17,7 +17,7 @@ It is recommended to call ```fetch_stations_list``` first and store the returned
 The function ```fetch_stations_xml``` fetches and parses all data from the Stations XML feed as an R object with class 'xml_document'. The ```get_*``` functions will not work with 'xml_document' objects. To extract data from an 'xml_document' in R the ```xml2``` package ([available here](https://cran.r-project.org/web/packages/xml2/index.html)) is recommended.
 
 ## Example
-The following provides an example of how to fetch and parse the Stations XML feed into an R list, and then create a tibble with the details on the facilities available at each station. When calling ```fetch_stations_list``` pass your NRDP username and password as to the relevant arguments in quotation marks. 
+The following provides an example of how to fetch and parse the Stations XML feed into an R list, and then create a tibble with the details on the facilities available at each station. When calling ```fetch_stations_list``` pass your NRDP username and password to the relevant arguments in quotation marks. 
 ```r
 stations <- nrstations::fetch_stations_list("nrdp_user@example.com", "nrdp_password_example")
 stations_tibble <- nrstations::get_facility_tags(stations)
