@@ -10,7 +10,7 @@ The package provides one primary function, ```fetch_stations_list```, to fetch a
 Each ```get_*``` function returns a tibble based on the major tags of the data, for example ```get_station_tags``` returns a tibble of data under the 'Station' tag as shown in the [XML schema](http://www.nationalrail.co.uk/static/documents/Stations%20XML%20Feed.pdf) where each row is one station. Each tibble returned by ```get_*``` provides basic details on the name and location of each station. Where mandatory data may be recorded within optional tags, for example 'Open' and 'Available', data from the 'Available' tag has been
 extracted.
 
-Additional data can be extracted from the list returned by ```fetch_stations_list``` by using Base R syntax for extracting data from lists.
+Additional data can be extracted from the list returned by ```fetch_stations_list``` by using ordinary R syntax for extracting data from lists.
 
 It is recommended to call ```fetch_stations_list``` first and store the returned list locally as a variable which can then be passed to the ```get_*``` functions. Fetching and parsing the Stations XML feed into R as a list takes around one minute.
 
