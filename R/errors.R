@@ -1,4 +1,4 @@
-### Package errors
+# Package errors
 
 #' Report an error with a http request
 #'

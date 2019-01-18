@@ -1,4 +1,4 @@
-context("Fetch")
+context("Fetch functions")
 
 # Save personal login credentials as variables named user and pass
 

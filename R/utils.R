@@ -1,4 +1,4 @@
-### Package utility functions
+# Package utility functions
 
 # Import pipe -----------------------------------------------------------------
 

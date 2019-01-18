@@ -1,4 +1,4 @@
-### Functions for fetching data from the NRDP Stations API
+# Functions for fetching data from the NRDP Stations API
 
 #' Fetch data on all stations and return as an xml_document
 #'

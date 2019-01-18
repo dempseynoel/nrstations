@@ -1,4 +1,4 @@
-context("Utility")
+context("Utility functions")
 
 # Save personal login credentials as variables named user and pass
 
