@@ -1,0 +1,21 @@
+Package: nrstations
+Type: Package
+Title: A package for downloading station data from the National Rail Data Portal
+Version: 0.1.0
+Author: Noel Dempsey
+Maintainer: Noel Dempsey <noel.dempsey@outlook.com>
+Description: A package for downloading station data from the National Rail Data
+    Portal API.
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Imports:
+  xml2, 
+  dplyr,
+  purrr,
+  tibble,
+  httr,
+  magrittr
+RoxygenNote: 6.1.1
+Suggests: 
+    testthat
