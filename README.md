@@ -10,11 +10,18 @@ The package provides one primary function, ```fetch_stations_list```, to fetch a
 Each ```get_*``` function returns a tibble based on the major tags of the data, for example ```get_station_tags``` returns a tibble of data under the 'Station' tag as shown in the [XML schema](http://www.nationalrail.co.uk/static/documents/Stations%20XML%20Feed.pdf) where each row is one station. Each tibble returned by ```get_*``` provides basic details on the name and location of each station. Where mandatory data may be recorded within optional tags, for example 'Open' and 'Available', data from the 'Available' tag has been
 extracted.
 
-Additional data can be extracted from the list returned by ```fetch_stations_list``` by using Base R syntax for extracting data from lists.
+Additional data can be extracted from the list returned by ```fetch_stations_list``` by using ordinary R syntax for extracting data from lists.
 
 It is recommended to call ```fetch_stations_list``` first and store the returned list locally as a variable which can then be passed to the ```get_*``` functions. Fetching and parsing the Stations XML feed into R as a list takes around one minute.
 
 The function ```fetch_stations_xml``` fetches and parses all data from the Stations XML feed as an R object with class 'xml_document'. The ```get_*``` functions will not work with 'xml_document' objects. To extract data from an 'xml_document' in R the ```xml2``` package ([available here](https://cran.r-project.org/web/packages/xml2/index.html)) is recommended.
+
+## Example
+The following provides an example of how to fetch and parse the Stations XML feed into an R list, and then create a tibble with the details on the facilities available at each station. When calling ```fetch_*``` pass your NRDP username and password to the relevant arguments in quotation marks. 
+```r
+stations <- nrstations::fetch_stations_list("nrdp_user@example.com", "nrdp_password_example")
+stations_tibble <- nrstations::get_facility_tags(stations)
+```
 
 ## Prerequisites
 In order to access the NRDP API feeds you need to [create a NRDP account](https://datafeeds.nationalrail.co.uk/#/). Ensure that all subscription types are selected. The email address and password chosen for your NRDP account will be used as arguments in the ```fetch_*``` functions when fetching data from the Stations XML feed API.
