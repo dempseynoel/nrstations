@@ -1,4 +1,4 @@
-# Functions for processing data returned from the API as a list
+### Functions for processing data returned from the API as a list
 
 #' Get a tibble of station tag data for each station
 #'
