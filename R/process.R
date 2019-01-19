@@ -2,9 +2,9 @@
 
 #' Get a tibble of station tag data for each station
 #'
-#' \code{get_station_tags} takes a list of stations returned from the API as a
-#' list and returns a tibble of data under the station tag, with one row per
-#' station. Each tibble column is a character string.
+#' \code{get_station_tags} takes a list of stations and returns a tibble of
+#' data under the station tag, with one row per station. Each tibble column
+#' is a character string.
 #'
 #' @param stations_list A list of stations as returned by \code{fetch_stations_list}
 #' @return A tibble of data under the station tag for each station.
@@ -31,9 +31,9 @@ get_station_tags <- function(stations_list) {
 
 #' Get a tibble of fare tag data for each station
 #'
-#' \code{get_fare_tags} takes a list of stations returned from the API as a
-#' list and returns a tibble of data under the fares tag, with one row per
-#' station. Each tibble column is a character string.
+#' \code{get_fare_tags} takes a list of stations and returns a tibble of
+#' data under the fare tag, with one row per station. Each tibble column
+#' is a character string.
 #'
 #' @param stations_list A list of stations as returned by \code{fetch_stations_list}
 #' @return A tibble of data under the fares tag for each station.
@@ -68,9 +68,9 @@ get_fare_tags <- function(stations_list) {
 
 #' Get a tibble of facility tag data for each station
 #'
-#' \code{get_facility_tags} takes a list of stations returned from the API as a
-#' list and returns a tibble of data under the facilities and passenger service
-#' tag, with one row per station. Each tibble column is a character string.
+#' \code{get_facility_tags} takes a list of stations and returns a tibble of
+#' data under the facility tag, with one row per station. Each tibble column
+#' is a character string.
 #'
 #' @param stations_list A list of stations as returned by \code{fetch_stations_list}
 #' @return A tibble of data under the facilities tag for each station.
@@ -114,9 +114,9 @@ get_facility_tags <- function(stations_list) {
 
 #' Get a tibble of accessibility tag data for each station
 #'
-#' \code{get_accessibility_tags} takes a list of stations returned from the API
-#' as a list and returns a tibble of data under the accessibility tag, with one
-#' row per station. Each tibble column is a character string.
+#' \code{get_accessibility_tags} takes a list of stations and returns a tibble
+#' of data under the accessibility tag, with one row per station. Each tibble
+#' column is a character string.
 #'
 #' @param stations_list A list of stations as returned by \code{fetch_stations_list}
 #' @return A tibble of data under the accessibility tag for each station.
@@ -151,9 +151,9 @@ get_accessibility_tags <- function(stations_list) {
 
 #' Get a tibble of interchange tag data for each station
 #'
-#' \code{get_interchange_tags} takes a list of stations returned from the API
-#' as a list and returns a tibble of data under the interchange tag, with one
-#' row per station. Each tibble column is a character string.
+#' \code{get_interchange_tags} takes a list of stations and returns a tibble of
+#' data under the interchange tag, with one row per station. Each tibble column
+#' is a character string.
 #'
 #' @param stations_list A list of stations as returned by \code{fetch_stations_list}
 #' @return A tibble of data under the interchange tag for each station.
@@ -182,9 +182,9 @@ get_interchange_tags <- function(stations_list) {
 
 #' Get a tibble of all station tag data for each station
 #'
-#' \code{get_all_station_tags} takes a list of stations returned from the API
-#' as a list and returns a tibble of data for all tags, with one
-#' row per station. Each tibble column is a character string.
+#' \code{get_all_station_tags} takes a list of stations and returns a tibble of
+#' data under each of the five major tags, with one row per station. Each
+#' tibble column is a character string.
 #'
 #' @param stations_list A list of stations as returned by \code{fetch_stations_list}
 #' @return A tibble of data for all tags for each station.
