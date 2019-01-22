@@ -11,6 +11,7 @@
 #' @export
 
 fetch_stations_xml <- function(nrdp_user, nrdp_pass) {
+  message("This may take a minute...")
   xml2::read_xml(fetch_response(nrdp_user, nrdp_pass), encoding = "ISO-8859-1")
 }
 

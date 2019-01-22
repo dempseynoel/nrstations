@@ -14,6 +14,6 @@ A tibble of data under the accessibility tag for each station.
 }
 \description{
 \code{get_accessibility_tags} takes a list of stations and returns a tibble
-of data under the accessibility tag, with one row per station. Each tibble
-column is a character string.
+of data under the accessibility tag, with one row per station. Longitude
+and latitude are numeric, all other variables are a character string.
 }

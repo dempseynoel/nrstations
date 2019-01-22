@@ -7,7 +7,7 @@
 error_status(response_text)
 }
 \arguments{
-\item{response}{The text of the server response.}
+\item{response_text}{The text of the server response.}
 }
 \description{
 Report an error with a http request

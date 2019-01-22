@@ -3,8 +3,8 @@
 #' Get a tibble of station tag data for each station
 #'
 #' \code{get_station_tags} takes a list of stations and returns a tibble of
-#' data under the station tag, with one row per station. Each tibble column
-#' is a character string.
+#' data under the station tag, with one row per station. Longitude and
+#' latitude are numeric, all other variables are a character string.
 #'
 #' @param stations_list A list of stations as returned by \code{fetch_stations_list}
 #' @return A tibble of data under the station tag for each station.
@@ -12,28 +12,25 @@
 
 get_station_tags <- function(stations_list) {
 
+  if (class(stations_list)[[1]] == "xml_document") stop(error_get())
+
+  basic <- get_station_basic(stations_list)
   values <- purrr::map_df(stations_list, function(node) {
 
     tibble::tibble(
-      station_code = handle_null(node$CrsCode[[1]]),
-      station_name = handle_null(node$Name[[1]]),
-      station_abbr = handle_null(node$SixteenCharacterName[[1]]),
-      nlc_code = handle_null(node$AlternativeIdentifiers$NationalLocationCode[[1]]),
-      longitude = handle_null(node$Longitude[[1]]),
-      latitude = handle_null(node$Latitude[[1]]),
-      station_operator = handle_null(node$StationOperator[[1]]),
       staffing_level = handle_null(node$Staffing$StaffingLevel[[1]]),
-      cctv = handle_null(node$Staffing$ClosedCircuitTelevision[[1]]))
+      cctv = handle_null(node$Staffing$ClosedCircuitTelevision$Available[[1]]))
   })
 
   dplyr::bind_rows(values)
+  dplyr::bind_cols(basic, values)
 }
 
 #' Get a tibble of fare tag data for each station
 #'
 #' \code{get_fare_tags} takes a list of stations and returns a tibble of
-#' data under the fare tag, with one row per station. Each tibble column
-#' is a character string.
+#' data under the fare tag, with one row per station. Longitude and
+#' latitude are numeric, all other variables are a character string.
 #'
 #' @param stations_list A list of stations as returned by \code{fetch_stations_list}
 #' @return A tibble of data under the fares tag for each station.
@@ -41,22 +38,19 @@ get_station_tags <- function(stations_list) {
 
 get_fare_tags <- function(stations_list) {
 
+  if (class(stations_list)[[1]] == "xml_document") stop(error_get())
+
+  basic <- get_station_basic(stations_list)
   values <- purrr::map_df(stations_list, function(node) {
 
     tibble::tibble(
-      station_code = handle_null(node$CrsCode[[1]]),
-      station_name = handle_null(node$Name[[1]]),
-      station_abbr = handle_null(node$SixteenCharacterName[[1]]),
-      nlc_code = handle_null(node$AlternativeIdentifiers$NationalLocationCode[[1]]),
-      longitude = handle_null(node$Longitude[[1]]),
-      latitude = handle_null(node$Latitude[[1]]),
-      station_operator = handle_null(node$StationOperator[[1]]),
       ticket_office = handle_null(node$Fares$TicketOffice$Available[[1]]),
       ticket_collection_office = handle_null(node$Fares$PrepurchaseCollection$TicketOffice[[1]]),
       ticket_collection_machine = handle_null(node$Fares$PrepurchaseCollection$TicketMachine[[1]]),
       ticket_machine_available = handle_null(node$Fares$TicketMachine$Available[[1]]),
       oyster_issue = handle_null(node$Fares$OystercardIssued[[1]]),
-      oyster_topup = handle_null(node$Fares$OystercardTopup[[1]]),
+      oyster_topup_office = handle_null(node$Fares$OystercardTopup$TicketOffice[[1]]),
+      oyster_topup_machine = handle_null(node$Fares$OystercardTopup$TicketMachine[[1]]),
       oyster_use = handle_null(node$Fares$UseOystercard[[1]]),
       smartcard_issue = handle_null(node$Fares$SmartcardIssued[[1]]),
       smartcard_validate = handle_null(node$Fares$SmartcardValidator[[1]]),
@@ -64,13 +58,14 @@ get_fare_tags <- function(stations_list) {
   })
 
   dplyr::bind_rows(values)
+  dplyr::bind_cols(basic, values)
 }
 
 #' Get a tibble of facility tag data for each station
 #'
 #' \code{get_facility_tags} takes a list of stations and returns a tibble of
-#' data under the facility tag, with one row per station. Each tibble column
-#' is a character string.
+#' data under the facility tag, with one row per station. Longitude and
+#' latitude are numeric, all other variables are a character string.
 #'
 #' @param stations_list A list of stations as returned by \code{fetch_stations_list}
 #' @return A tibble of data under the facilities tag for each station.
@@ -78,16 +73,12 @@ get_fare_tags <- function(stations_list) {
 
 get_facility_tags <- function(stations_list) {
 
+  if (class(stations_list[[1]]) == "xml_document") stop(error_get())
+
+  basic <- get_station_basic(stations_list)
   values <- purrr::map_df(stations_list, function(node) {
 
     tibble::tibble(
-      station_code = handle_null(node$CrsCode[[1]]),
-      station_name = handle_null(node$Name[[1]]),
-      station_abbr = handle_null(node$SixteenCharacterName[[1]]),
-      nlc_code = handle_null(node$AlternativeIdentifiers$NationalLocationCode[[1]]),
-      longitude = handle_null(node$Longitude[[1]]),
-      latitude = handle_null(node$Latitude[[1]]),
-      station_operator = handle_null(node$StationOperator[[1]]),
       luggage_facilities = handle_null(node$PassengerServices$LeftLuggage$Available[[1]]),
       lost_property = handle_null(node$PassengerServices$LostProperty$Available[[1]]),
       first_class_lounge = handle_null(node$StationFacilities$FirstClassLounge$Available[[1]]),
@@ -110,13 +101,14 @@ get_facility_tags <- function(stations_list) {
   })
 
   dplyr::bind_rows(values)
+  dplyr::bind_cols(basic, values)
 }
 
 #' Get a tibble of accessibility tag data for each station
 #'
 #' \code{get_accessibility_tags} takes a list of stations and returns a tibble
-#' of data under the accessibility tag, with one row per station. Each tibble
-#' column is a character string.
+#' of data under the accessibility tag, with one row per station. Longitude
+#' and latitude are numeric, all other variables are a character string.
 #'
 #' @param stations_list A list of stations as returned by \code{fetch_stations_list}
 #' @return A tibble of data under the accessibility tag for each station.
@@ -124,16 +116,12 @@ get_facility_tags <- function(stations_list) {
 
 get_accessibility_tags <- function(stations_list) {
 
+  if (class(stations_list[[1]]) == "xml_document") stop(error_get())
+
+  basic <- get_station_basic(stations_list)
   values <- purrr::map_df(stations_list, function(node) {
 
     tibble::tibble(
-      station_code = handle_null(node$CrsCode[[1]]),
-      station_name = handle_null(node$Name[[1]]),
-      station_abbr = handle_null(node$SixteenCharacterName[[1]]),
-      nlc_code = handle_null(node$AlternativeIdentifiers$NationalLocationCode[[1]]),
-      longitude = handle_null(node$Longitude[[1]]),
-      latitude = handle_null(node$Latitude[[1]]),
-      station_operator = handle_null(node$StationOperator[[1]]),
       staff_help = handle_null(node$Accessibility$StaffHelpAvailable$Available[[1]]),
       induction_loop = handle_null(node$Accessibility$InductionLoop[[1]]),
       accessible_ticket_machines = handle_null(node$Accessibility$AccessibleTicketMachines$Available[[1]]),
@@ -147,13 +135,15 @@ get_accessibility_tags <- function(stations_list) {
   })
 
   dplyr::bind_rows(values)
+  dplyr::bind_cols(basic, values)
 }
 
 #' Get a tibble of interchange tag data for each station
 #'
 #' \code{get_interchange_tags} takes a list of stations and returns a tibble of
-#' data under the interchange tag, with one row per station. Each tibble column
-#' is a character string.
+#' data under the interchange tag, with one row per station. Longitude,
+#' latitude cycle_storage_spaces and car_park_spaces are numeric, all
+#' other variables are a character string.
 #'
 #' @param stations_list A list of stations as returned by \code{fetch_stations_list}
 #' @return A tibble of data under the interchange tag for each station.
@@ -161,36 +151,36 @@ get_accessibility_tags <- function(stations_list) {
 
 get_interchange_tags <- function(stations_list) {
 
+  if (class(stations_list[[1]]) == "xml_document") stop(error_get())
+
+  basic <- get_station_basic(stations_list)
   values <- purrr::map_df(stations_list, function(node) {
 
     tibble::tibble(
-      station_code = handle_null(node$CrsCode[[1]]),
-      station_name = handle_null(node$Name[[1]]),
-      station_abbr = handle_null(node$SixteenCharacterName[[1]]),
-      nlc_code = handle_null(node$AlternativeIdentifiers$NationalLocationCode[[1]]),
-      longitude = handle_null(node$Longitude[[1]]),
-      latitude = handle_null(node$Latitude[[1]]),
-      station_operator = handle_null(node$StationOperator[[1]]),
-      cycle_storage_spaces = handle_null(node$Interchange$CycleStorage$Spaces[[1]]),
+      cycle_storage_spaces = as.numeric(handle_null(node$Interchange$CycleStorage$Spaces[[1]])),
       cycle_storage_sheltered = handle_null(node$Interchange$CycleStorage$Sheltered[[1]]),
       cycle_storage_cctv = handle_null(node$Interchange$CycleStorage$Cctv[[1]]),
-      car_park_spaces = handle_null(node$Interchange$CarPark$Spaces[[1]]))
+      car_park_spaces = as.numeric(handle_null(node$Interchange$CarPark$Spaces[[1]])))
   })
 
   dplyr::bind_rows(values)
+  dplyr::bind_cols(basic, values)
 }
 
 #' Get a tibble of all station tag data for each station
 #'
 #' \code{get_all_station_tags} takes a list of stations and returns a tibble of
-#' data under each of the five major tags, with one row per station. Each
-#' tibble column is a character string.
+#' data under each of the five major tags, with one row per station. Longitude,
+#' latitude cycle_storage_spaces and car_park_spaces are numeric, all
+#' other variables are a character string.
 #'
 #' @param stations_list A list of stations as returned by \code{fetch_stations_list}
 #' @return A tibble of data for all tags for each station.
 #' @export
 
 get_all_station_tags <- function(stations_list) {
+
+  if (class(stations_list[[1]]) == "xml_document") stop(error_get())
 
   station_tags <- get_station_tags(stations_list)
   fare_tags <- get_fare_tags(stations_list)

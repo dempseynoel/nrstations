@@ -14,6 +14,6 @@ A tibble of data under the facilities tag for each station.
 }
 \description{
 \code{get_facility_tags} takes a list of stations and returns a tibble of
-data under the facility tag, with one row per station. Each tibble column
-is a character string.
+data under the facility tag, with one row per station. Longitude and
+latitude are numeric, all other variables are a character string.
 }

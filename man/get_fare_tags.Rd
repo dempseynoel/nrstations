@@ -14,6 +14,6 @@ A tibble of data under the fares tag for each station.
 }
 \description{
 \code{get_fare_tags} takes a list of stations and returns a tibble of
-data under the fare tag, with one row per station. Each tibble column
-is a character string.
+data under the fare tag, with one row per station. Longitude and
+latitude are numeric, all other variables are a character string.
 }

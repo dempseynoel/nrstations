@@ -14,6 +14,7 @@ A tibble of data for all tags for each station.
 }
 \description{
 \code{get_all_station_tags} takes a list of stations and returns a tibble of
-data under each of the five major tags, with one row per station. Each
-tibble column is a character string.
+data under each of the five major tags, with one row per station. Longitude,
+latitude cycle_storage_spaces and car_park_spaces are numeric, all
+other variables are a character string.
 }

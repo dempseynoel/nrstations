@@ -40,6 +40,27 @@ fetch_response <- function(nrdp_user, nrdp_pass) {
 
 # Data handling functions -----------------------------------------------------
 
+#' Create basic station data tibble
+#'
+#' @keywords internal
+
+get_station_basic <- function(stations_list) {
+
+  values <- purrr::map_df(stations_list, function(node) {
+
+      tibble::tibble(
+      station_code = handle_null(node$CrsCode[[1]]),
+      station_name = handle_null(node$Name[[1]]),
+      station_abbr = handle_null(node$SixteenCharacterName[[1]]),
+      nlc_code = handle_null(node$AlternativeIdentifiers$NationalLocationCode[[1]]),
+      longitude = as.numeric(handle_null(node$Longitude[[1]])),
+      latitude = as.numeric(handle_null(node$Latitude[[1]])),
+      station_operator = handle_null(node$StationOperator[[1]]))
+  })
+
+  dplyr::bind_rows(values)
+}
+
 #' Check if list element is NULL
 #'
 #' @keywords internal

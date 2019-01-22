@@ -14,6 +14,10 @@ test_that("fetch_authentication contains nrdp username", {
   expect_match(response, user, ignore.cas = TRUE)
 })
 
+test_that("fetch_authentiction returns error", {
+  expect_error(fetch_authentication("a", "b"))
+})
+
 # Tests: fetch_response -------------------------------------------------------
 
 test_that("fetch_response returns a response from the API", {
