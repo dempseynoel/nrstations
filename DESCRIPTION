@@ -15,7 +15,8 @@ Imports:
   purrr,
   tibble,
   httr,
-  magrittr
+  magrittr,
+  stringr
 RoxygenNote: 6.1.1
 Suggests: 
     testthat
