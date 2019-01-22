@@ -73,7 +73,7 @@ get_fare_tags <- function(stations_list) {
 
 get_facility_tags <- function(stations_list) {
 
-  if (class(stations_list[[1]]) == "xml_document") stop(error_get())
+  if (class(stations_list)[[1]] == "xml_document") stop(error_get())
 
   basic <- get_station_basic(stations_list)
   values <- purrr::map_df(stations_list, function(node) {
@@ -116,7 +116,7 @@ get_facility_tags <- function(stations_list) {
 
 get_accessibility_tags <- function(stations_list) {
 
-  if (class(stations_list[[1]]) == "xml_document") stop(error_get())
+  if (class(stations_list)[[1]] == "xml_document") stop(error_get())
 
   basic <- get_station_basic(stations_list)
   values <- purrr::map_df(stations_list, function(node) {
@@ -151,7 +151,7 @@ get_accessibility_tags <- function(stations_list) {
 
 get_interchange_tags <- function(stations_list) {
 
-  if (class(stations_list[[1]]) == "xml_document") stop(error_get())
+  if (class(stations_list)[[1]] == "xml_document") stop(error_get())
 
   basic <- get_station_basic(stations_list)
   values <- purrr::map_df(stations_list, function(node) {
@@ -180,7 +180,7 @@ get_interchange_tags <- function(stations_list) {
 
 get_all_station_tags <- function(stations_list) {
 
-  if (class(stations_list[[1]]) == "xml_document") stop(error_get())
+  if (class(stations_list)[[1]] == "xml_document") stop(error_get())
 
   station_tags <- get_station_tags(stations_list)
   fare_tags <- get_fare_tags(stations_list)
