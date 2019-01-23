@@ -22,7 +22,6 @@ get_station_tags <- function(stations_list) {
       cctv = handle_null(node$Staffing$ClosedCircuitTelevision$Available[[1]]))
   })
 
-  dplyr::bind_rows(values)
   dplyr::bind_cols(basic, values)
 }
 
@@ -57,7 +56,6 @@ get_fare_tags <- function(stations_list) {
       travelcard_zone = handle_null(node$Fares$Travelcard$TravelcardZone[[1]]))
   })
 
-  dplyr::bind_rows(values)
   dplyr::bind_cols(basic, values)
 }
 
@@ -100,7 +98,6 @@ get_facility_tags <- function(stations_list) {
       shops = handle_null(node$StationFacilities$Shops$Available[[1]]))
   })
 
-  dplyr::bind_rows(values)
   dplyr::bind_cols(basic, values)
 }
 
@@ -134,7 +131,6 @@ get_accessibility_tags <- function(stations_list) {
       wheelchair_available = handle_null(node$Accessibility$WheelchairsAvailable$Available[[1]]))
   })
 
-  dplyr::bind_rows(values)
   dplyr::bind_cols(basic, values)
 }
 
@@ -163,7 +159,6 @@ get_interchange_tags <- function(stations_list) {
       car_park_spaces = as.numeric(handle_null(node$Interchange$CarPark$Spaces[[1]])))
   })
 
-  dplyr::bind_rows(values)
   dplyr::bind_cols(basic, values)
 }
 
