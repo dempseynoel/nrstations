@@ -17,7 +17,7 @@ fetch_authentication <- function(nrdp_user, nrdp_pass) {
     username = nrdp_user, password = nrdp_pass), encode = "form")
   response_text <- httr::content(response)
 
-  if (response$status_code != 201) stop(error_status(response_text))
+  if (response$status_code != 200) stop(error_status(response_text))
 
   response_text$token
 }
